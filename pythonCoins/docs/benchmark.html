@@ -43,7 +43,7 @@ def benchmark(func):
     def _benchmark(*args, **kwargs):
         t0 = time.time()
         res = func(*args, **kwargs)
-        print(f&#34;{func.__name__} elapsed {time.time() - t0} secs&#34;)
+        print(f&#34;{func.__name__} elapsed {(time.time() - t0):e} secs&#34;)
         return res
 
     return _benchmark</code></pre>
@@ -86,7 +86,7 @@ def benchmark(func):
     def _benchmark(*args, **kwargs):
         t0 = time.time()
         res = func(*args, **kwargs)
-        print(f&#34;{func.__name__} elapsed {time.time() - t0} secs&#34;)
+        print(f&#34;{func.__name__} elapsed {(time.time() - t0):e} secs&#34;)
         return res
 
     return _benchmark</code></pre>

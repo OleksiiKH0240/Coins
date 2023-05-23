@@ -69,7 +69,6 @@ class CoinsDetector:
             print(f"{groupL} = {groupR}\nLeft group is equal to right group by weight")
         print("------------------------\n")
 
-    @benchmark
     def solver(self):
         """
         Function executes algorithms of finding fake coins and print the result, according to coins information:
@@ -112,6 +111,7 @@ class CoinsDetector:
             elif fakeCoinWeightIndex is None:
                 print(f"can't find if fake coin is lighter or heavier")
 
+    @benchmark
     def partCaseAlgorithm(self, n):
         """
         In this function it's considered that we know if fake coins is lighter or heavier
@@ -125,11 +125,14 @@ class CoinsDetector:
         currIndices = [i for i in range(self.coinsNumber)]
 
         for i in range(n):
-            if len(currIndices) == 2:
+            currCoinsNumber = len(currIndices)
+            if currCoinsNumber == 1:
+                return currIndices[0]
+            elif currCoinsNumber == 2:
                 currIndices = self.getFakeGroupPartCaseAlg(currIndices[:1], currIndices[1:], None)
                 # print(currIndices)
                 return currIndices[0]
-            currCoinsNumber = len(currIndices)
+
             # curr_n = math.ceil(math.log10(currCoinsNumber) / math.log10(3))
             b = int(math.floor(currCoinsNumber / 3))
 
@@ -186,6 +189,7 @@ class CoinsDetector:
             else:
                 return group1
 
+    @benchmark
     def genCaseAlgorithm(self, n):
         """
         In this function it's considered that we don't know if fake coins is lighter or heavier
@@ -262,7 +266,7 @@ class CoinsDetector:
             print(f"current indices = {currIndices}")
 
         print(currIndices, fakeCoinWeightIndex)
-        return currIndices[0]
+        return currIndices[0], fakeCoinWeightIndex
 
     def getFakeGroupGenCaseAlg(self, group0: List[int], group1: List[int], group2: List[int], group3: List[int]) -> \
             Tuple[List[int], Optional[int]]:
@@ -403,15 +407,15 @@ def main():
 
 
 if __name__ == '__main__':
-    # ck = CoinsKeeper(n_gen=100, n_fake=1, n_fake_l=0, n_fake_h=0, weights=None)
-    # indices = [i for i in range(len(ck.weights))]
-    # df = pd.DataFrame(columns=indices)
-    # df.index.name = "indices"
-    # df.loc["weights"] = ck.weights
-
-    # print(df.to_markdown())
-
-    # cd = CoinsDetector(ck)
-    # cd.solver()
+    ck = CoinsKeeper(n_gen=100000, n_fake=1, n_fake_l=0, n_fake_h=0, weights=None)
+    indices = [i for i in range(len(ck.weights))]
+    df = pd.DataFrame(columns=indices)
+    df.index.name = "indices"
+    df.loc["weights"] = ck.weights
     #
-    main()
+    print(df.to_markdown())
+    #
+    cd = CoinsDetector(ck)
+    cd.solver()
+
+    # main()
