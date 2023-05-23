@@ -118,11 +118,11 @@ class CoinsKeeper:
             left_indices: coins indices in weights list.
             right_indices: coins indices in weights list.
         Returns:
-            1 if weight of right group of coins is heavier than weight of left one;
+            1: if weight of right group of coins is heavier than weight of left one;
 
-            -1 if weight of right group of coins is lighter than weight of left one;
+            -1: if weight of right group of coins is lighter than weight of left one;
 
-            0 if weight of right group of coins is equal to weight of left one;
+            0: if weight of right group of coins is equal to weight of left one;
         &#39;&#39;&#39;
 
         leftWeight = sum(map(lambda x: self.weights[x], left_indices))
@@ -277,11 +277,11 @@ Store method for comparing weights of different groups of coins.</p>
             left_indices: coins indices in weights list.
             right_indices: coins indices in weights list.
         Returns:
-            1 if weight of right group of coins is heavier than weight of left one;
+            1: if weight of right group of coins is heavier than weight of left one;
 
-            -1 if weight of right group of coins is lighter than weight of left one;
+            -1: if weight of right group of coins is lighter than weight of left one;
 
-            0 if weight of right group of coins is equal to weight of left one;
+            0: if weight of right group of coins is equal to weight of left one;
         &#39;&#39;&#39;
 
         leftWeight = sum(map(lambda x: self.weights[x], left_indices))
@@ -318,9 +318,15 @@ Store method for comparing weights of different groups of coins.</p>
 <dd>coins indices in weights list.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>1 if weight of right group of coins is heavier than weight of left one;</p>
-<p>-1 if weight of right group of coins is lighter than weight of left one;</p>
-<p>0 if weight of right group of coins is equal to weight of left one;</p></div>
+<dl>
+<dt><code>1</code></dt>
+<dd>if weight of right group of coins is heavier than weight of left one;</dd>
+</dl>
+<p>-1: if weight of right group of coins is lighter than weight of left one;</p>
+<dl>
+<dt><code>0</code></dt>
+<dd>if weight of right group of coins is equal to weight of left one;</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -333,11 +339,11 @@ Store method for comparing weights of different groups of coins.</p>
         left_indices: coins indices in weights list.
         right_indices: coins indices in weights list.
     Returns:
-        1 if weight of right group of coins is heavier than weight of left one;
+        1: if weight of right group of coins is heavier than weight of left one;
 
-        -1 if weight of right group of coins is lighter than weight of left one;
+        -1: if weight of right group of coins is lighter than weight of left one;
 
-        0 if weight of right group of coins is equal to weight of left one;
+        0: if weight of right group of coins is equal to weight of left one;
     &#39;&#39;&#39;
 
     leftWeight = sum(map(lambda x: self.weights[x], left_indices))

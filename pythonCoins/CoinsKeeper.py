@@ -90,11 +90,11 @@ class CoinsKeeper:
             left_indices: coins indices in weights list.
             right_indices: coins indices in weights list.
         Returns:
-            1 if weight of right group of coins is heavier than weight of left one;
+            1: if weight of right group of coins is heavier than weight of left one;
 
-            -1 if weight of right group of coins is lighter than weight of left one;
+            -1: if weight of right group of coins is lighter than weight of left one;
 
-            0 if weight of right group of coins is equal to weight of left one;
+            0: if weight of right group of coins is equal to weight of left one;
         '''
 
         leftWeight = sum(map(lambda x: self.weights[x], left_indices))
