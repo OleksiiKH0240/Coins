@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>pythonCoins API documentation</title>
+<title>pythonCoins.benchmark API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,30 +19,80 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Namespace <code>pythonCoins</code></h1>
+<h1 class="title">Module <code>pythonCoins.benchmark</code></h1>
 </header>
 <section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import time
+
+
+def benchmark(func):
+    &#34;&#34;&#34;decorator function which is used to calculate execution time of function func.
+
+    Args:
+      func: decorated function
+
+    Returns:
+      function _benchmark
+
+    &#34;&#34;&#34;
+
+    def _benchmark(*args, **kwargs):
+        t0 = time.time()
+        res = func(*args, **kwargs)
+        print(f&#34;{func.__name__} elapsed {time.time() - t0} secs&#34;)
+        return res
+
+    return _benchmark</code></pre>
+</details>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="pythonCoins.CoinsDetector" href="CoinsDetector.html">pythonCoins.CoinsDetector</a></code></dt>
+<dt id="pythonCoins.benchmark.benchmark"><code class="name flex">
+<span>def <span class="ident">benchmark</span></span>(<span>func)</span>
+</code></dt>
 <dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="pythonCoins.CoinsKeeper" href="CoinsKeeper.html">pythonCoins.CoinsKeeper</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="pythonCoins.benchmark" href="benchmark.html">pythonCoins.benchmark</a></code></dt>
-<dd>
-<div class="desc"></div>
+<div class="desc"><p>decorator function which is used to calculate execution time of function func.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>func</code></strong></dt>
+<dd>decorated function</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>function _benchmark</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def benchmark(func):
+    &#34;&#34;&#34;decorator function which is used to calculate execution time of function func.
+
+    Args:
+      func: decorated function
+
+    Returns:
+      function _benchmark
+
+    &#34;&#34;&#34;
+
+    def _benchmark(*args, **kwargs):
+        t0 = time.time()
+        res = func(*args, **kwargs)
+        print(f&#34;{func.__name__} elapsed {time.time() - t0} secs&#34;)
+        return res
+
+    return _benchmark</code></pre>
+</details>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -53,11 +103,14 @@
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pythonCoins.CoinsDetector" href="CoinsDetector.html">pythonCoins.CoinsDetector</a></code></li>
-<li><code><a title="pythonCoins.CoinsKeeper" href="CoinsKeeper.html">pythonCoins.CoinsKeeper</a></code></li>
-<li><code><a title="pythonCoins.benchmark" href="benchmark.html">pythonCoins.benchmark</a></code></li>
+<li><code><a title="pythonCoins" href="index.html">pythonCoins</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pythonCoins.benchmark.benchmark" href="#pythonCoins.benchmark.benchmark">benchmark</a></code></li>
 </ul>
 </li>
 </ul>

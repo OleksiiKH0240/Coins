@@ -6,6 +6,7 @@ from colorama import Fore, Style
 import pandas as pd
 
 from CoinsKeeper import CoinsKeeper
+from benchmark import benchmark
 
 
 class CoinsDetector:
@@ -68,6 +69,7 @@ class CoinsDetector:
             print(f"{groupL} = {groupR}\nLeft group is equal to right group by weight")
         print("------------------------\n")
 
+    @benchmark
     def solver(self):
         """
         Function executes algorithms of finding fake coins and print the result, according to coins information:
@@ -159,9 +161,10 @@ class CoinsDetector:
         Returns:
             group: list of coin's indices which contains a fake coin
         """
+        # managing_item =
         # 1 if group2 > group1
         # -1 if group2 < group1
-        # - if group2 == group1
+        # 0 if group2 == group1
         managing_item = self.ck.balance(group1, group2)
         self.weightingCount += 1
         self.weightingProcess(groupL=group1, groupR=group2, managingItem=managing_item)
@@ -279,6 +282,7 @@ class CoinsDetector:
             group: group with fake coin;
             indicator: indicates whether this fake coin is heavier or lighter, can be either -1, 1 or None.
         """
+        # managing_item =
         # 1 if groupR > groupL
         # -1 if groupR < groupL
         # - if groupR == groupL
@@ -399,7 +403,7 @@ def main():
 
 
 if __name__ == '__main__':
-    # ck = CoinsKeeper(n_gen=25, n_fake=1, n_fake_l=0, n_fake_h=0, weights="file")
+    # ck = CoinsKeeper(n_gen=100, n_fake=1, n_fake_l=0, n_fake_h=0, weights=None)
     # indices = [i for i in range(len(ck.weights))]
     # df = pd.DataFrame(columns=indices)
     # df.index.name = "indices"

@@ -34,6 +34,7 @@ from colorama import Fore, Style
 import pandas as pd
 
 from CoinsKeeper import CoinsKeeper
+from benchmark import benchmark
 
 
 class CoinsDetector:
@@ -96,6 +97,7 @@ class CoinsDetector:
             print(f&#34;{groupL} = {groupR}\nLeft group is equal to right group by weight&#34;)
         print(&#34;------------------------\n&#34;)
 
+    @benchmark
     def solver(self):
         &#34;&#34;&#34;
         Function executes algorithms of finding fake coins and print the result, according to coins information:
@@ -187,9 +189,10 @@ class CoinsDetector:
         Returns:
             group: list of coin&#39;s indices which contains a fake coin
         &#34;&#34;&#34;
+        # managing_item =
         # 1 if group2 &gt; group1
         # -1 if group2 &lt; group1
-        # - if group2 == group1
+        # 0 if group2 == group1
         managing_item = self.ck.balance(group1, group2)
         self.weightingCount += 1
         self.weightingProcess(groupL=group1, groupR=group2, managingItem=managing_item)
@@ -307,6 +310,7 @@ class CoinsDetector:
             group: group with fake coin;
             indicator: indicates whether this fake coin is heavier or lighter, can be either -1, 1 or None.
         &#34;&#34;&#34;
+        # managing_item =
         # 1 if groupR &gt; groupL
         # -1 if groupR &lt; groupL
         # - if groupR == groupL
@@ -427,7 +431,7 @@ def main():
 
 
 if __name__ == &#39;__main__&#39;:
-    # ck = CoinsKeeper(n_gen=25, n_fake=1, n_fake_l=0, n_fake_h=0, weights=&#34;file&#34;)
+    # ck = CoinsKeeper(n_gen=100, n_fake=1, n_fake_l=0, n_fake_h=0, weights=None)
     # indices = [i for i in range(len(ck.weights))]
     # df = pd.DataFrame(columns=indices)
     # df.index.name = &#34;indices&#34;
@@ -619,6 +623,7 @@ Also, print in pretty way coins with their weights and indices.</p></div>
             print(f&#34;{groupL} = {groupR}\nLeft group is equal to right group by weight&#34;)
         print(&#34;------------------------\n&#34;)
 
+    @benchmark
     def solver(self):
         &#34;&#34;&#34;
         Function executes algorithms of finding fake coins and print the result, according to coins information:
@@ -710,9 +715,10 @@ Also, print in pretty way coins with their weights and indices.</p></div>
         Returns:
             group: list of coin&#39;s indices which contains a fake coin
         &#34;&#34;&#34;
+        # managing_item =
         # 1 if group2 &gt; group1
         # -1 if group2 &lt; group1
-        # - if group2 == group1
+        # 0 if group2 == group1
         managing_item = self.ck.balance(group1, group2)
         self.weightingCount += 1
         self.weightingProcess(groupL=group1, groupR=group2, managingItem=managing_item)
@@ -830,6 +836,7 @@ Also, print in pretty way coins with their weights and indices.</p></div>
             group: group with fake coin;
             indicator: indicates whether this fake coin is heavier or lighter, can be either -1, 1 or None.
         &#34;&#34;&#34;
+        # managing_item =
         # 1 if groupR &gt; groupL
         # -1 if groupR &lt; groupL
         # - if groupR == groupL
@@ -1019,6 +1026,7 @@ There are no intersections between groups of coin's indices</p>
         group: group with fake coin;
         indicator: indicates whether this fake coin is heavier or lighter, can be either -1, 1 or None.
     &#34;&#34;&#34;
+    # managing_item =
     # 1 if groupR &gt; groupL
     # -1 if groupR &lt; groupL
     # - if groupR == groupL
@@ -1099,9 +1107,10 @@ There are no intersections between groups of coin's indices</p>
     Returns:
         group: list of coin&#39;s indices which contains a fake coin
     &#34;&#34;&#34;
+    # managing_item =
     # 1 if group2 &gt; group1
     # -1 if group2 &lt; group1
-    # - if group2 == group1
+    # 0 if group2 == group1
     managing_item = self.ck.balance(group1, group2)
     self.weightingCount += 1
     self.weightingProcess(groupL=group1, groupR=group2, managingItem=managing_item)
@@ -1181,57 +1190,19 @@ There are no intersections between groups of coin's indices</p>
 </details>
 </dd>
 <dt id="pythonCoins.CoinsDetector.CoinsDetector.solver"><code class="name flex">
-<span>def <span class="ident">solver</span></span>(<span>self)</span>
+<span>def <span class="ident">solver</span></span>(<span>*args, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Function executes algorithms of finding fake coins and print the result, according to coins information:</p>
-<p>if it's unknown if fake coin is lighter or heavier, genCaseAlgorithm method will be executed;</p>
-<p>if we know whether fake coin is lighter or heavier, partCaseAlgorithm method will be executed;</p></div>
+<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def solver(self):
-    &#34;&#34;&#34;
-    Function executes algorithms of finding fake coins and print the result, according to coins information:
-
-    if it&#39;s unknown if fake coin is lighter or heavier, genCaseAlgorithm method will be executed;
-
-    if we know whether fake coin is lighter or heavier, partCaseAlgorithm method will be executed;
-    &#34;&#34;&#34;
-    if self.fakeCoinIsLighter or self.fakeCoinIsHeavier:
-        n = math.ceil(math.log10(self.coinsNumber) / math.log10(3))
-
-        print(f&#34;Expected number of weighting: {n}&#34;)
-        print(f&#34;Coins number = {self.coinsNumber}&#34;)
-        print()
-
-        self.weightingCount = 0
-        fakeCoinIndex = self.partCaseAlgorithm(n)
-        print(f&#34;In the end weighting number equals {self.weightingCount}&#34;)
-
-        if self.fakeCoinIsLighter:
-            print(f&#34;lighter fake coin has index: {fakeCoinIndex}&#34;)
-        else:
-            print(f&#34;heavier fake coin has index: {fakeCoinIndex}&#34;)
-
-    elif self.fakeCoinIsUnknown:
-        n = math.ceil((math.log10(self.coinsNumber) / math.log10(3)) + 1)
-
-        print(f&#34;{n=}&#34;)
-        print(f&#34;Coins number = {self.coinsNumber}&#34;)
-        print()
-
-        self.weightingCount = 0
-        fakeCoinIndex, fakeCoinWeightIndex = self.genCaseAlgorithm(n)
-        print(f&#34;In the end weighting number equals {self.weightingCount}&#34;)
-
-        if fakeCoinWeightIndex == -1:
-            print(f&#34;lighter fake coin has index: {fakeCoinIndex}&#34;)
-        elif fakeCoinWeightIndex == 1:
-            print(f&#34;heavier fake coin has index: {fakeCoinIndex}&#34;)
-        elif fakeCoinWeightIndex is None:
-            print(f&#34;can&#39;t find if fake coin is lighter or heavier&#34;)</code></pre>
+<pre><code class="python">def _benchmark(*args, **kwargs):
+    t0 = time.time()
+    res = func(*args, **kwargs)
+    print(f&#34;{func.__name__} elapsed {time.time() - t0} secs&#34;)
+    return res</code></pre>
 </details>
 </dd>
 <dt id="pythonCoins.CoinsDetector.CoinsDetector.weightingProcess"><code class="name flex">
